@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  web:
+    restart: always
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:3000:3000/tcp"
+    env_file: 
+      - .env.development
+    depends_on:
+      - db
+    volumes:
+        - .:/app
+  db:
+    image: postgres:9.6-alpine
+    env_file:
+      - .env.development
+    volumes:
+    - type: volume
+      source: postgres
+      target: /var/lib/postgresql/data
+volumes:
+  postgres:
