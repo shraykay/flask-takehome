@@ -5,6 +5,7 @@ import config
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True # silence the deprecation warning
 
 db = SQLAlchemy(app)
 
